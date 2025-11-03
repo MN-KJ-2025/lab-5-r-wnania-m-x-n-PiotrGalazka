@@ -73,4 +73,11 @@ def residual_norm(A: np.ndarray, x: np.ndarray, b: np.ndarray) -> Union[float, N
         (float): Wartość normy residuum dla podanych parametrów.
         Jeżeli dane wejściowe są niepoprawne funkcja zwraca `None`.
     """
-    pass
+    if not isinstance(A, (np.ndarray)) or not isinstance(x, (np.ndarray)) or not isinstance(b, (np.ndarray))or np.ndim(b) != 1 or np.ndim(A)!=2 or np.ndim(x) != 1 or len(A)!=len(b):
+        return None
+    
+    (i,j) = np.shape(A)
+    if len(x)!= j:
+        return None  
+      
+    return np.linalg.norm(b-A@x)
